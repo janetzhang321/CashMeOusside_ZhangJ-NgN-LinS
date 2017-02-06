@@ -12,35 +12,24 @@ server = MongoClient('lisa.stuy.edu')
 db = server.CashMeOusside
 c = db.students
 
-
-plist = []
+vals = {}
 
 f = open('peeps.csv').read().split('\n')[1:]
 
 for line in f:
-	if line == "":
-		continue 
-	pdict = {}
-	pdict['name'] = line.split(',')[0]
-	pdict['age'] = line.split(',')[1]
-	pdict['id'] = line.split(',')[2]
-	plist.append(pdict)
-	
-c.students.insert_many(plist)
+	if line != "":
+		doc = { 'id': line.split(',')[2], 'age': line.split(',')[1], 'name': line.split(',')[0], 'courses': ""}
+		vals[line.split(',')[2]] = doc
 
-clist = []
-
-f = open('courses.csv').read().split('\n')[1:]
+f = open("courses.csv").read().split('\n')[1:]
 
 for line in f:
-	if line == "":
-		continue 
-	cdict = {}
-	cdict['code'] = line.split(',')[0]
-	cdict['mark'] = line.split(',')[1]
-	cdict['id'] = line.split(',')[2]
-	clist.append(cdict)
-	
-c.students.insert_many(clist)
+	if line != "":
+		doc = {line.split(',')[0]: line.split(',')[1]}
+		if vals[line.split(',')[2]].get('courses'):
+			vals[line.split(',')[2]]['courses'].update(doc)
+		else:
+			vals[line.split(',')[2]]['courses'] = doc
 
+c.insert_many(vals.values())
 
