@@ -1,3 +1,4 @@
+
 #Sharon Lin, Nick Ng, Janet Zhang
 #SoftDev2 pd6
 #HW1 -- hey MON, GO and get some data!
@@ -7,7 +8,7 @@ from pymongo import MongoClient
 
 #server = MongoClient('149.89.150.100')
 
-server = MongoClient('lisa.stuy.edu')
+server = MongoClient('homer.stuy.edu')
 
 db = server.CashMeOusside
 c = db.students
@@ -31,5 +32,6 @@ for line in f:
 		else:
 			vals[line.split(',')[2]]['courses'] = doc
 
-c.insert_many(vals.values())
+c.insert(vals)
 
+print("Done")
