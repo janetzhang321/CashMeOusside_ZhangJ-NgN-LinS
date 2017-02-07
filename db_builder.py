@@ -32,6 +32,9 @@ for line in f:
 		else:
 			vals[line.split(',')[2]]['courses'] = doc
 
-c.insert(vals)
+c.insert_many(vals.values())
 
 print("Done")
+
+#-----------------------------------------------------------------------
+
