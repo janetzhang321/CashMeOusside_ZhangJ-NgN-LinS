@@ -8,7 +8,7 @@ from pymongo import MongoClient
 
 #server = MongoClient('149.89.150.100')
 
-server = MongoClient('localhost')
+server = MongoClient('homer.stuy.edu')
 
 db = server.CashMeOusside
 c = db.students
