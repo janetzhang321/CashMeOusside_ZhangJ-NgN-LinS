@@ -3,9 +3,32 @@ from pymongo import MongoClient
 
 server = MongoClient('homer.stuy.edu')
 db = server.CashMeOusside
-c= db.students
-l = c.find()
 
+
+d = db.teachers
+c= db.students
+
+vals = {}
+counter = 0
+
+f = open('teachers.csv').read().split('\n')[1:]
+
+for line in f:
+    if line != "":
+        m = c.find({'courses': {'name': line.split(',')[0] }})
+        for person in m:
+            print("--------------------")        
+            print person
+            print("--------------------")
+        doc = {'name': line.split(',')[1], 'class': line.split(',')[0], 'period':line.split(',')[2], 'students':""}
+        vals[counter] = doc
+        counter += 1
+
+    
+#------------------------------------------------------------------
+
+
+l = c.find()
 
 for person in l:#prints the names
     try:
@@ -20,9 +43,9 @@ for person in l:#prints the names
         pavg = float(l)/len(a)
         print pavg
         print person['id']
+        print person
         print '\n'
     except:
         {}
-
 
 

@@ -26,7 +26,7 @@ f = open("courses.csv").read().split('\n')[1:]
 
 for line in f:
 	if line != "":
-		doc = {line.split(',')[0]: line.split(',')[1]}
+		doc = {'name': line.split(',')[0], 'period': line.split(',')[1]}
 		if vals[line.split(',')[2]].get('courses'):
 			vals[line.split(',')[2]]['courses'].update(doc)
 		else:
