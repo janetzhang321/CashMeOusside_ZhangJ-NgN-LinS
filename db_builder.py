@@ -1,4 +1,4 @@
-x#Sharon Lin, Nick Ng, Janet Zhang
+#Sharon Lin, Nick Ng, Janet Zhang
 #SoftDev2 pd6
 #HW1 -- hey MON, GO and get some data!
 #2017-02-06  
@@ -12,7 +12,7 @@ courses = [course for course in DictReader(open('courses.csv'))]
 peeps = [peep for peep in DictReader(open('peeps.csv'))]
 teachers = [teacher for teacher in DictReader(open('teachers.csv'))]
 
-server = MongoClient('homer.stuy.edu')
+server = MongoClient()
 db = server.CashMeOusside
 
 vals = [[] for i in range(len(peeps))]

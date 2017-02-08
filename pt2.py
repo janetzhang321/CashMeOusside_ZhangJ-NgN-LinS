@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from csv import reader, DictReader
 
-server = MongoClient('homer.stuy.edu')
+server = MongoClient()
 db = server.CashMeOusside
 
 def average(L):
@@ -10,7 +10,9 @@ def average(L):
     else:
         return 0
 
-peeps = [peep for peep in db.student.find()]
+peeps = [peep for peep in db.students.find()]
 
 for peep in peeps:
     print peep['name'], peep['id'], average([int(course['mark']) for course in peep['grades']])
+
+print("Done")
